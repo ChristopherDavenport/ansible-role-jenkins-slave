@@ -12,7 +12,15 @@
     group: "{{ jenkins_slave_username }}"
     state: directory
 
+- name: Create Jenkins Slave Mount
+  file:
+    path: "{{ jenkins_slave_mount }}"
+    owner: "{{ jenkins_slave_username }}"
+    group: "{{ jenkins_slave_username }}"
+    state: directory
+
 - name: Create Authorized Key For Jenkins User
+  when: jenkins_slave_authorize_key is defined
   authorized_key:
     user: "{{ jenkins_slave_username }}"
     state: present
