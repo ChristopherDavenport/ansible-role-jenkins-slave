@@ -1,0 +1,19 @@
+---
+
+- name: Create Jenkins Remote User
+  user:
+    name: "{{ jenkins_slave_username }}"
+    state: present
+
+- name: Create Jenkins Slave Base
+  file:
+    path: "{{ jenkins_slave_base }}"
+    owner: "{{ jenkins_slave_username }}"
+    group: "{{ jenkins_slave_username }}"
+    state: directory
+
+- name: Create Authorized Key For Jenkins User
+  authorized_key:
+    user: "{{ jenkins_slave_username }}"
+    state: present
+    key: "{{ lookup('file', jenkins_slave_authorize_key) }}"

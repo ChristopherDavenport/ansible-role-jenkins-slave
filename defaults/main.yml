@@ -1,0 +1,7 @@
+---
+
+jenkins_slave_username: jenkins
+jenkins_slave_base: /home/{{ jenkins_slave_username }}
+
+# Local Public Key File
+# jenkins_slave_authorize_key:
